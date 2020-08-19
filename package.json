@@ -3,7 +3,6 @@
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {
-    "predev": "npm run knex:dev:migrate",
     "dev": "next dev",
     "build": "next build",
     "prestart": "npm run knex:production:migrate",
