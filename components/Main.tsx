@@ -1,16 +1,22 @@
 import React from 'react'
 import { Stack } from './Stack'
+import { Post, PostProps } from './Post'
 
-export const Main = () => {
-  const posts = [1, 2, 3, 4]
+type MainProps = {
+  postsData: PostProps[]
+}
+
+export const Main: React.FC<MainProps> = ({ postsData }) => {
+  // eslint-disable-next-line no-console
+  console.log('posts data', postsData)
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col w-full max-w-4xl p-4">
+      <div className="flex flex-col w-full max-w-2xl p-4">
         <Stack
-          components={posts.map((post) => (
-            <div key={post}>
-              <div className="h-64 w-full border bg-white">post {post}</div>
+          components={postsData.map((post) => (
+            <div key={post.id}>
+              <Post {...post} />
             </div>
           ))}
         />
