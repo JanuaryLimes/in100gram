@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { Logo } from './Logo'
 
 export const Layout: React.FC = ({ children }) => {
   return (
@@ -15,9 +16,7 @@ export const Layout: React.FC = ({ children }) => {
           <div className="italic flex-auto">
             <Link href="/">
               <button className="flex">
-                <div>In</div>
-                <div style={{ padding: '5px 2px 0 1px' }}>💯</div>
-                <div>gram</div>
+                <Logo />
               </button>
             </Link>
           </div>
