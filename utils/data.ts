@@ -1,7 +1,7 @@
 import faker from 'faker'
-import { PostProps, User, Comment } from '../components/Post'
+import { UserModel, PostProps, Comment } from '../types'
 
-function getFakeUser(): User {
+function getFakeUser(): UserModel {
   return {
     name: faker.internet.userName(), // faker.name.firstName() + faker.name.lastName(),
     imageUrl: `https://picsum.photos/seed/${faker.random.number(200)}/32`,
