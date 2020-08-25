@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Logo } from './Logo'
+import { AppContext } from '../store/context'
 
 export const Layout: React.FC = ({ children }) => {
+  const { state } = useContext(AppContext)
+
   return (
     <div>
       <Head>
@@ -22,7 +25,12 @@ export const Layout: React.FC = ({ children }) => {
           </div>
           {/* TODO link */}
           <div className="flex-auto flex justify-center">search...</div>
-          <div className="flex-auto flex justify-end">nav item...</div>
+          <div
+            className="flex-auto flex justify-end"
+            title={'logged as ' + state.loggedUserState.loggedUser.email}
+          >
+            nav item...
+          </div>
         </div>
       </nav>
 

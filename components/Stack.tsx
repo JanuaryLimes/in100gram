@@ -1,9 +1,5 @@
 import React from 'react'
-
-type StackProps = {
-  components: JSX.Element[]
-  gap?: 2 | 4
-}
+import { StackProps } from '../types'
 
 const gapType = {
   2: 'mb-2',

@@ -1,10 +1,7 @@
 import React from 'react'
 import { Stack } from './Stack'
-import { Post, PostProps } from './Post'
-
-type MainProps = {
-  postsData: PostProps[]
-}
+import { Post } from './Post'
+import { MainProps } from '../types'
 
 export const Main: React.FC<MainProps> = ({ postsData }) => {
   // eslint-disable-next-line no-console

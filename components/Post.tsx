@@ -1,20 +1,5 @@
 import React from 'react'
-
-export type User = {
-  name: string
-  imageUrl: string
-}
-
-export type Comment = {
-  author: User
-  comment: string
-}
-
-export type PostProps = {
-  id: number
-  author: User
-  comments: Comment[]
-}
+import { PostProps } from '../types'
 
 export const Post: React.FC<PostProps> = ({ id, author, comments }) => {
   return (
