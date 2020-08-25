@@ -8,7 +8,7 @@ const Knex = require('knex')
 exports.up = function (knex) {
   return knex.schema.createTable('users', (table) => {
     table.uuid('id').primary()
-    table.timestamp('createdAt')
+    table.bigInteger('createdAt').unsigned()
     table.text('email').unique()
     table.string('hash')
     table.string('salt')
