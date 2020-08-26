@@ -4,6 +4,7 @@ import { posts } from '../utils/data'
 import { gql, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { Loader } from '../components/Loader'
 
 const ViewerQuery = gql`
   query ViewerQuery {
@@ -36,7 +37,11 @@ export const Home = ({ postsData }): JSX.Element => {
     )
   }
 
-  return <p>loading... [// TODO] </p>
+  return (
+    <div className="fixed inset-0">
+      <Loader />
+    </div>
+  )
 }
 
 Home.getInitialProps = async () => {

@@ -23,7 +23,6 @@ export const Layout: React.FC = ({ children }) => {
               </button>
             </Link>
           </div>
-          {/* TODO link */}
           <div className="flex-auto flex justify-center">search...</div>
           <div
             className="flex-auto flex justify-end"
