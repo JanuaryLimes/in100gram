@@ -1,23 +1,14 @@
 import { Layout } from '../components/Layout'
 import { Main } from '../components/Main'
 import { posts } from '../utils/data'
-import { gql, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Loader } from '../components/Loader'
-
-const ViewerQuery = gql`
-  query ViewerQuery {
-    viewer {
-      id
-      email
-    }
-  }
-`
+import { useViewerQuery } from '../apollo/generated/graphql'
 
 export const Home = ({ postsData }): JSX.Element => {
   const router = useRouter()
-  const { data, loading, error } = useQuery(ViewerQuery)
+  const { data, loading, error } = useViewerQuery()
   const viewer = data?.viewer
   const shouldRedirect = !(loading || error || viewer)
 
