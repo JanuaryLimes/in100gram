@@ -35,19 +35,19 @@ export const Layout: React.FC = ({ children }) => {
       off: <RiHomeLine />,
     },
     inbox: {
-      href: Locations.inbox,
+      href: Locations.home, // TODO
       condition: route == Locations.inbox,
       on: <RiSendPlaneFill />,
       off: <RiSendPlaneLine />,
     },
     explore: {
-      href: Locations.explore,
+      href: Locations.home, // TODO
       condition: route == Locations.explore,
       on: <RiCompass3Fill />,
       off: <RiCompass3Line />,
     },
     activity: {
-      href: Locations.activity,
+      href: Locations.home, // TODO
       condition: route == Locations.activity,
       on: <RiHeart3Fill />,
       off: <RiHeart3Line />,

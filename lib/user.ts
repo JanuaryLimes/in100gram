@@ -17,7 +17,12 @@ export async function createUser({ email, password }) {
     salt,
   }
 
-  await knex.insert(user).into('users').then()
+  try {
+    await knex.insert(user).into('users').then()
+  } catch (e) {
+    // TODO logger
+    throw 'Unable to register'
+  }
 
   return user
 }
