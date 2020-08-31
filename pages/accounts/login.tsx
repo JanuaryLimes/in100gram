@@ -1,11 +1,9 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useApolloClient } from '@apollo/client'
 import { getErrorMessage } from '../../lib/form'
 import { Logo } from '../../components/Logo'
-import { AppContext } from '../../store/context'
-import { LoggedUserKey, User } from '../../types'
 import { useSignInMutationMutation } from '../../apollo/generated/graphql'
 import { Layout } from '../../components/Layout'
 
@@ -14,7 +12,6 @@ function SignIn() {
   const [signIn] = useSignInMutationMutation()
   const [errorMsg, setErrorMsg] = useState()
   const router = useRouter()
-  const { dispatch } = useContext(AppContext)
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -31,12 +28,6 @@ function SignIn() {
         },
       })
       if (data.signIn.user) {
-        const email = data.signIn.user.email
-        localStorage.setItem(LoggedUserKey, JSON.stringify({ email } as User))
-        dispatch({
-          type: 'login',
-          payload: { email },
-        })
         await router.push('/')
       }
     } catch (error) {

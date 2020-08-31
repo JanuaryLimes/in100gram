@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, Dispatch, useEffect } from 'react'
 import { loggedUserStateReducer } from './reducers'
-import { AppState, LoggedUserStateActions, LoggedUserKey, User } from '../types'
+import { AppState, LoggedUserStateActions } from '../types'
+import { useViewer } from '../utils/hooks'
 
 const initialState: AppState = {
   loggedUserState: { loggedUser: {} },
@@ -23,13 +24,13 @@ const mainReducer = (
 
 const AppProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState)
+  const { viewer } = useViewer()
 
   useEffect(() => {
-    const loggedUser =
-      (JSON.parse(localStorage.getItem(LoggedUserKey)) as User) ?? {}
-
-    dispatch({ type: 'login', payload: { email: loggedUser.email } })
-  }, [])
+    if (viewer?.email) {
+      dispatch({ type: 'login', payload: { email: viewer.email } })
+    }
+  }, [viewer])
 
   useEffect(() => {
     if (process.env.NODE_ENV != 'production') {
