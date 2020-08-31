@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Loader } from '../components/Loader'
 import { useViewerQuery } from '../apollo/generated/graphql'
+import { Navigation } from '../components/Navigation'
 
 export const Home = ({ postsData }): JSX.Element => {
   const router = useRouter()
@@ -21,7 +22,12 @@ export const Home = ({ postsData }): JSX.Element => {
   // TODO error?
   function content() {
     if (viewer) {
-      return <Main postsData={postsData} />
+      return (
+        <>
+          <Navigation></Navigation>
+          <Main postsData={postsData} />
+        </>
+      )
     }
 
     return (
