@@ -18,6 +18,7 @@ export type User = {
   id: Scalars['ID']
   email: Scalars['String']
   createdAt: Scalars['Int']
+  photoUrl?: Maybe<Scalars['String']>
 }
 
 export type SignUpInput = {
@@ -80,7 +81,9 @@ export type SignInMutationMutation = { __typename?: 'Mutation' } & {
 export type ViewerQueryVariables = Exact<{ [key: string]: never }>
 
 export type ViewerQuery = { __typename?: 'Query' } & {
-  viewer?: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'email'>>
+  viewer?: Maybe<
+    { __typename?: 'User' } & Pick<User, 'id' | 'email' | 'photoUrl'>
+  >
 }
 
 export const SignInMutationDocument = gql`
@@ -142,6 +145,7 @@ export const ViewerDocument = gql`
     viewer {
       id
       email
+      photoUrl
     }
   }
 `

@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import { Logo } from './Logo'
-//import { AppContext } from '../store/context'
 import {
   RiHomeLine,
   RiHomeFill,
@@ -12,7 +11,9 @@ import {
   RiHeart3Line,
   RiHeart3Fill,
 } from 'react-icons/ri'
+import { FaRegUserCircle } from 'react-icons/fa'
 import { useRouter } from 'next/router'
+import { AppContext } from '../store/context'
 
 enum Locations {
   home = '/',
@@ -22,7 +23,7 @@ enum Locations {
 }
 
 export const Navigation = () => {
-  //const { state } = useContext(AppContext)
+  const { state } = useContext(AppContext)
   const router = useRouter()
   const route = router.route
 
@@ -53,6 +54,22 @@ export const Navigation = () => {
     },
   }
 
+  function user() {
+    const photoUrl = state?.loggedUserState?.loggedUser?.viewer?.photoUrl
+
+    return (
+      <div className="flex items-center ml-2">
+        {photoUrl ? (
+          <img className="rounded-full" src={photoUrl}></img>
+        ) : (
+          <div className="text-2xl">
+            <FaRegUserCircle />
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <nav className="bg-white border-b flex justify-center top-0 sticky">
       <div className="flex items-center w-full max-w-4xl p-4">
@@ -77,6 +94,7 @@ export const Navigation = () => {
             <NavButton {...buttons.inbox} />
             <NavButton {...buttons.explore} />
             <NavButton {...buttons.activity} />
+            {user()}
           </div>
         </div>
       </div>
@@ -87,7 +105,9 @@ export const Navigation = () => {
 function NavButton({ condition, on, off, href }) {
   return (
     <Link href={href}>
-      <button className="hover:text-gray-700">{condition ? on : off}</button>
+      <button className="hover:text-gray-700 ml-2">
+        {condition ? on : off}
+      </button>
     </Link>
   )
 }

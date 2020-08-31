@@ -1,3 +1,5 @@
+import { ViewerQuery } from './apollo/generated/graphql'
+
 export const LoggedUserKey = 'loggedUser'
 
 export type User = {
@@ -5,7 +7,7 @@ export type User = {
 }
 
 export type LoggedUserState = {
-  loggedUser: User
+  loggedUser: ViewerQuery
 }
 
 export type AppState = {
@@ -13,7 +15,7 @@ export type AppState = {
 }
 
 export type LoggedUserStateActions =
-  | { type: 'login'; payload: User }
+  | { type: 'login'; payload: ViewerQuery }
   | { type: 'logout' }
 
 export type MainProps = {

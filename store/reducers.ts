@@ -8,7 +8,7 @@ export const loggedUserStateReducer = (
     case 'login':
       return {
         ...state,
-        loggedUser: { email: action.payload.email },
+        loggedUser: { viewer: { ...action.payload.viewer } },
       }
     case 'logout': {
       const result: LoggedUserState = { loggedUser: {} }

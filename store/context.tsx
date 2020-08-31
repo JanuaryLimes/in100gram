@@ -28,7 +28,7 @@ const AppProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (viewer?.email) {
-      dispatch({ type: 'login', payload: { email: viewer.email } })
+      dispatch({ type: 'login', payload: { viewer } })
     }
   }, [viewer])
 
