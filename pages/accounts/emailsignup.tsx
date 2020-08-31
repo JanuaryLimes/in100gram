@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { gql, useMutation } from '@apollo/client'
 import { getErrorMessage } from '../../lib/form'
-import Head from 'next/head'
 import { Logo } from '../../components/Logo'
+import { Layout } from '../../components/Layout'
 
 const SignUpMutation = gql`
   mutation SignUpMutation($email: String!, $password: String!) {
@@ -44,12 +44,7 @@ function SignUp() {
   const inputClasses = 'border p-2 rounded-sm text-sm w-full mb-2'
 
   return (
-    <>
-      <Head>
-        <title>In💯gram - Instagram clone</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <Layout>
       <div className="flex flex-col items-center p-4">
         <div className="w-full max-w-sm border bg-white rounded-sm p-10">
           <div className="text-3xl flex justify-center pb-2">
@@ -100,7 +95,7 @@ function SignUp() {
           </Link>
         </div>
       </div>
-    </>
+    </Layout>
   )
 }
 

@@ -1,28 +1,17 @@
 import { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { gql } from '@apollo/client'
-import { useMutation, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
 import { getErrorMessage } from '../../lib/form'
-import Head from 'next/head'
 import { Logo } from '../../components/Logo'
 import { AppContext } from '../../store/context'
 import { LoggedUserKey, User } from '../../types'
-
-const SignInMutation = gql`
-  mutation SignInMutation($email: String!, $password: String!) {
-    signIn(input: { email: $email, password: $password }) {
-      user {
-        id
-        email
-      }
-    }
-  }
-`
+import { useSignInMutationMutation } from '../../apollo/generated/graphql'
+import { Layout } from '../../components/Layout'
 
 function SignIn() {
   const client = useApolloClient()
-  const [signIn] = useMutation(SignInMutation)
+  const [signIn] = useSignInMutationMutation()
   const [errorMsg, setErrorMsg] = useState()
   const router = useRouter()
   const { dispatch } = useContext(AppContext)
@@ -58,12 +47,7 @@ function SignIn() {
   const inputClasses = 'border p-2 rounded-sm text-sm w-full mb-2'
 
   return (
-    <>
-      <Head>
-        <title>In💯gram - Instagram clone</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <Layout>
       <div className="flex flex-col items-center p-4">
         <div className="w-full max-w-sm border bg-white rounded-sm p-10">
           <div className="text-3xl flex justify-center pb-2">
@@ -108,7 +92,7 @@ function SignIn() {
           </Link>
         </div>
       </div>
-    </>
+    </Layout>
   )
 }
 

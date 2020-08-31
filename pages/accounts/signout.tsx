@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { gql, useMutation, useApolloClient } from '@apollo/client'
+import { Layout } from '../../components/Layout'
 
 const SignOutMutation = gql`
   mutation SignOutMutation {
@@ -16,12 +17,16 @@ function SignOut() {
   useEffect(() => {
     signOut().then(() => {
       client.resetStore().then(() => {
-        router.push('/signin')
+        router.push('/accounts/login')
       })
     })
   }, [signOut, router, client])
 
-  return <p>Signing out...</p>
+  return (
+    <Layout>
+      <p>Signing out...</p>
+    </Layout>
+  )
 }
 
 export default SignOut

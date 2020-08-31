@@ -19,20 +19,19 @@ export const Home = ({ postsData }): JSX.Element => {
   }, [shouldRedirect])
 
   // TODO error?
+  function content() {
+    if (viewer) {
+      return <Main postsData={postsData} />
+    }
 
-  if (viewer) {
     return (
-      <Layout>
-        <Main postsData={postsData} />
-      </Layout>
+      <div className="fixed inset-0">
+        <Loader />
+      </div>
     )
   }
 
-  return (
-    <div className="fixed inset-0">
-      <Loader />
-    </div>
-  )
+  return <Layout>{content()}</Layout>
 }
 
 Home.getInitialProps = async () => {

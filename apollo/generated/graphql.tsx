@@ -66,12 +66,77 @@ export type MutationSignInArgs = {
   input: SignInInput
 }
 
+export type SignInMutationMutationVariables = Exact<{
+  email: Scalars['String']
+  password: Scalars['String']
+}>
+
+export type SignInMutationMutation = { __typename?: 'Mutation' } & {
+  signIn: { __typename?: 'SignInPayload' } & {
+    user: { __typename?: 'User' } & Pick<User, 'id' | 'email'>
+  }
+}
+
 export type ViewerQueryVariables = Exact<{ [key: string]: never }>
 
 export type ViewerQuery = { __typename?: 'Query' } & {
   viewer?: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'email'>>
 }
 
+export const SignInMutationDocument = gql`
+  mutation SignInMutation($email: String!, $password: String!) {
+    signIn(input: { email: $email, password: $password }) {
+      user {
+        id
+        email
+      }
+    }
+  }
+`
+export type SignInMutationMutationFn = Apollo.MutationFunction<
+  SignInMutationMutation,
+  SignInMutationMutationVariables
+>
+
+/**
+ * __useSignInMutationMutation__
+ *
+ * To run a mutation, you first call `useSignInMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSignInMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [signInMutationMutation, { data, loading, error }] = useSignInMutationMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useSignInMutationMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    SignInMutationMutation,
+    SignInMutationMutationVariables
+  >
+) {
+  return Apollo.useMutation<
+    SignInMutationMutation,
+    SignInMutationMutationVariables
+  >(SignInMutationDocument, baseOptions)
+}
+export type SignInMutationMutationHookResult = ReturnType<
+  typeof useSignInMutationMutation
+>
+export type SignInMutationMutationResult = Apollo.MutationResult<
+  SignInMutationMutation
+>
+export type SignInMutationMutationOptions = Apollo.BaseMutationOptions<
+  SignInMutationMutation,
+  SignInMutationMutationVariables
+>
 export const ViewerDocument = gql`
   query Viewer {
     viewer {
