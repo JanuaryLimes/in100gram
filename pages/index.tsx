@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { Loader } from '../components/Loader'
 import { useViewerQuery } from '../apollo/generated/graphql'
 import { Navigation } from '../components/Navigation'
+import { NextPageContext } from 'next'
 
 export const Home = ({ postsData }): JSX.Element => {
   const router = useRouter()
@@ -40,8 +41,10 @@ export const Home = ({ postsData }): JSX.Element => {
   return <Layout>{content()}</Layout>
 }
 
-Home.getInitialProps = async () => {
-  return { postsData: posts }
+export async function getServerSideProps(_context: NextPageContext) {
+  return {
+    props: { postsData: posts },
+  }
 }
 
 export default Home
