@@ -2,7 +2,7 @@ import crypto from 'crypto'
 import { v4 as uuidv4 } from 'uuid'
 import { knex } from '../knex'
 
-export async function createUser({ email, password }) {
+export async function createUser({ email, password, displayName }) {
   // Here you should create the user and save the salt and hashed password (some dbs may have
   // authentication methods that will do it for you so you don't have to worry about it):
   const salt = crypto.randomBytes(16).toString('hex')
@@ -15,6 +15,7 @@ export async function createUser({ email, password }) {
     email,
     hash,
     salt,
+    displayName,
   }
 
   try {

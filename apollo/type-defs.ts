@@ -7,10 +7,12 @@ export const typeDefs = gql`
     email: String!
     createdAt: Int!
     photoUrl: String
+    displayName: String!
   }
   input SignUpInput {
     email: String!
     password: String!
+    displayName: String!
   }
   input SignInInput {
     email: String!

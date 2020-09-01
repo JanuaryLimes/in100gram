@@ -1,24 +1,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { gql, useMutation } from '@apollo/client'
 import { getErrorMessage } from '../../lib/form'
 import { Logo } from '../../components/Logo'
 import { Layout } from '../../components/Layout'
-
-const SignUpMutation = gql`
-  mutation SignUpMutation($email: String!, $password: String!) {
-    signUp(input: { email: $email, password: $password }) {
-      user {
-        id
-        email
-      }
-    }
-  }
-`
+import { useSignUpMutationMutation } from '../../apollo/generated/graphql'
 
 function SignUp() {
-  const [signUp] = useMutation(SignUpMutation)
+  const [signUp] = useSignUpMutationMutation()
   const [errorMsg, setErrorMsg] = useState()
   const router = useRouter()
 
@@ -26,12 +15,14 @@ function SignUp() {
     event.preventDefault()
     const emailElement = event.currentTarget.elements.email
     const passwordElement = event.currentTarget.elements.password
+    const usernameElement = event.currentTarget.elements.username
 
     try {
       await signUp({
         variables: {
           email: emailElement.value,
           password: passwordElement.value,
+          displayName: usernameElement.value,
         },
       })
 
@@ -61,6 +52,13 @@ function SignUp() {
                 type="email"
                 required
                 placeholder="Email"
+                className={inputClasses}
+              />
+              <input
+                name="username"
+                type="text"
+                required
+                placeholder="Username"
                 className={inputClasses}
               />
               <input
