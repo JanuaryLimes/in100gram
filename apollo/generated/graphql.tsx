@@ -22,6 +22,18 @@ export type User = {
   displayName: Scalars['String']
 }
 
+export type UserInfo = {
+  __typename?: 'UserInfo'
+  id: Scalars['ID']
+  email: Scalars['String']
+  createdAt: Scalars['Int']
+  photoUrl?: Maybe<Scalars['String']>
+  displayName: Scalars['String']
+  postsCount: Scalars['Int']
+  followersCount: Scalars['Int']
+  followingCount: Scalars['Int']
+}
+
 export type SignUpInput = {
   email: Scalars['String']
   password: Scalars['String']
@@ -45,7 +57,7 @@ export type SignInPayload = {
 
 export type Query = {
   __typename?: 'Query'
-  user?: Maybe<User>
+  user?: Maybe<UserInfo>
   users: Array<Maybe<User>>
   viewer?: Maybe<User>
 }
@@ -98,9 +110,15 @@ export type UserQueryVariables = Exact<{
 
 export type UserQuery = { __typename?: 'Query' } & {
   user?: Maybe<
-    { __typename?: 'User' } & Pick<
-      User,
-      'id' | 'email' | 'photoUrl' | 'displayName'
+    { __typename?: 'UserInfo' } & Pick<
+      UserInfo,
+      | 'id'
+      | 'email'
+      | 'photoUrl'
+      | 'displayName'
+      | 'postsCount'
+      | 'followersCount'
+      | 'followingCount'
     >
   >
 }
@@ -238,6 +256,9 @@ export const UserDocument = gql`
       email
       photoUrl
       displayName
+      postsCount
+      followersCount
+      followingCount
     }
   }
 `

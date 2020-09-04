@@ -9,6 +9,18 @@ export const typeDefs = gql`
     photoUrl: String
     displayName: String!
   }
+  type UserInfo {
+    id: ID!
+    email: String!
+    createdAt: Int!
+    photoUrl: String
+    displayName: String!
+
+    postsCount: Int!
+    followersCount: Int!
+    followingCount: Int!
+  }
+
   input SignUpInput {
     email: String!
     password: String!
@@ -24,8 +36,9 @@ export const typeDefs = gql`
   type SignInPayload {
     user: User!
   }
+
   type Query {
-    user(displayName: String!): User
+    user(displayName: String!): UserInfo
     users: [User]!
     viewer: User
   }

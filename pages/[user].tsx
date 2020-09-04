@@ -25,7 +25,7 @@ export const UserPage = () => {
     return '404' // TODO
   }
 
-  const photoUrl = data.user.photoUrl
+  const { photoUrl, postsCount, followersCount, followingCount } = data.user
 
   return (
     <Layout>
@@ -42,6 +42,9 @@ export const UserPage = () => {
             </div>
           )}
         </div>
+        <div>posts: {postsCount}</div>
+        <div>followersCount: {followersCount}</div>
+        <div>followingCount: {followingCount}</div>
       </Content>
     </Layout>
   )

@@ -35,12 +35,24 @@ export async function findUser({ email }) {
 }
 
 export async function findUserByName({ displayName }) {
-  const user = await knex
+  const userRows = await knex
     .select('*')
     .from('users')
     .where({ displayName })
     .then()
-  return user?.[0]
+
+  const user = userRows?.[0]
+
+  if (user) {
+    return {
+      ...user,
+      postsCount: 0,
+      followersCount: 0,
+      followingCount: 0,
+    }
+  }
+
+  return user
 }
 
 // Compare the password of an already fetched user (using `findUser`) and compare the

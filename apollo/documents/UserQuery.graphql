@@ -4,5 +4,9 @@ query User($displayName: String!) {
     email
     photoUrl
     displayName
+
+    postsCount
+    followersCount
+    followingCount
   }
 }
