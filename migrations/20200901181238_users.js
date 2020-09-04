@@ -6,12 +6,9 @@ const Knex = require('knex')
  * @param {Knex} knex
  */
 exports.up = async function (knex) {
-  if (await knex.schema.hasTable('users')) {
-    await knex.schema.dropTable('users').then()
-  }
   return knex.schema.createTable('users', (table) => {
     table.uuid('id').primary().notNullable()
-    table.bigInteger('createdAt').unsigned().notNullable()
+    table.dateTime('createdAt', { useTz: false }).notNullable()
     table.text('email').unique().notNullable()
     table.string('hash').notNullable()
     table.string('salt').notNullable()
