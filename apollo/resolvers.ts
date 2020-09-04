@@ -1,5 +1,10 @@
 import { AuthenticationError, UserInputError } from 'apollo-server-micro'
-import { createUser, findUser, validatePassword } from '../lib/user'
+import {
+  createUser,
+  validatePassword,
+  findUser,
+  findUserByName,
+} from '../lib/user'
 import { setLoginSession, getLoginSession } from '../lib/auth'
 import { removeTokenCookie } from '../lib/auth-cookies'
 
@@ -16,6 +21,14 @@ export const resolvers = {
         throw new AuthenticationError(
           'Authentication token is invalid, please log in'
         )
+      }
+    },
+    async user(_parent, { displayName }, _context, _info) {
+      try {
+        const user = findUserByName({ displayName })
+        return user
+      } catch (e) {
+        return null
       }
     },
   },

@@ -25,7 +25,7 @@ export const typeDefs = gql`
     user: User!
   }
   type Query {
-    user(id: ID!): User!
+    user(displayName: String!): User
     users: [User]!
     viewer: User
   }
