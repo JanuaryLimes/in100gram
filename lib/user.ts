@@ -11,7 +11,7 @@ export async function createUser({ email, password, displayName }) {
     .toString('hex')
   const user = {
     id: uuidv4(),
-    createdAt: Date.now(),
+    createdAt: new Date(),
     email,
     hash,
     salt,
