@@ -5,6 +5,8 @@ import { Content } from '../components/Content'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { useUserQuery } from '../apollo/generated/graphql'
 import { Loader } from '../components/Loader'
+import { useContext } from 'react'
+import { AppContext } from '../store/context'
 
 function useUserPageState() {
   const router = useRouter()
@@ -12,18 +14,41 @@ function useUserPageState() {
   const { data, loading } = useUserQuery({
     variables: { displayName: (user as string) ?? '' },
   })
+  const { state } = useContext(AppContext)
 
   // eslint-disable-next-line no-console
   // console.log('user page props', { router, user, data })
 
+  const { photoUrl, postsCount, followers, following, displayName } =
+    data?.user ?? {}
+  const { id: viewerId } = state?.loggedUserState?.loggedUser?.viewer ?? {}
+
+  // TODO own profile
+  const loggedUserIsFollowing = Boolean(
+    followers?.find((follower) => follower.id == viewerId)
+  )
+
   return {
     loading,
-    userInfo: data?.user,
+    photoUrl,
+    postsCount,
+    followers,
+    following,
+    displayName,
+    loggedUserIsFollowing,
   }
 }
 
 export const UserPage = () => {
-  const { loading, userInfo } = useUserPageState()
+  const {
+    loading,
+    photoUrl,
+    postsCount,
+    followers,
+    following,
+    displayName,
+    loggedUserIsFollowing,
+  } = useUserPageState()
 
   if (loading) {
     return (
@@ -33,11 +58,9 @@ export const UserPage = () => {
     )
   }
 
-  if (!userInfo) {
+  if (!displayName) {
     return '404' // TODO
   }
-
-  const { photoUrl, postsCount, followers, following, displayName } = userInfo
 
   function photo() {
     return photoUrl ? (
@@ -52,18 +75,33 @@ export const UserPage = () => {
   function info() {
     return (
       <>
-        <div className="flex">
-          <div className="text-xl">{displayName}</div>
+        <div className="flex items-center">
+          <div className="text-2xl font-light">{displayName}</div>
           <div className="pl-2">
-            <button className="bg-blue-500 font-semibold p-1 px-2 rounded text-white w-full">
-              follow
-            </button>
+            {loggedUserIsFollowing ? (
+              <button className="font-semibold p-1 px-4 rounded text-red-600 w-full">
+                Unfollow
+              </button>
+            ) : (
+              <button className="bg-blue-500 font-semibold p-1 px-4 rounded text-white w-full">
+                Follow
+              </button>
+            )}
           </div>
         </div>
-        <div className="flex">
-          <div>posts: {postsCount}</div>
-          <div>followersCount: {followers.length}</div>
-          <div>followingCount: {following.length}</div>
+        <div className="flex py-4">
+          <div className="pr-10">
+            <span className="font-semibold">{postsCount}</span>
+            {' posts'}
+          </div>
+          <div className="pr-10">
+            <span className="font-semibold">{followers.length}</span>
+            {' followers'}
+          </div>
+          <div className="pr-10">
+            <span className="font-semibold">{following.length}</span>
+            {' following'}
+          </div>
         </div>
       </>
     )
@@ -74,7 +112,7 @@ export const UserPage = () => {
       <Navigation />
       <Content>
         <div className="flex">
-          <div className="p-6">{photo()}</div>
+          <div className="px-6">{photo()}</div>
           <div className="flex-auto">{info()}</div>
         </div>
       </Content>
