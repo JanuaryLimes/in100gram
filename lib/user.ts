@@ -44,15 +44,33 @@ export async function findUserByName({ displayName }) {
   const user = userRows?.[0]
 
   if (user) {
+    const { id } = user
+
+    const followers = await knex
+      .select('*')
+      .from('users')
+      .whereIn(
+        'id',
+        knex.select('userId').from('followers').where({ follow: id })
+      )
+
+    const following = await knex
+      .select('*')
+      .from('users')
+      .whereIn(
+        'id',
+        knex.select('follow').from('followers').where({ userId: id })
+      )
+
     return {
       ...user,
       postsCount: 0,
-      followersCount: 0,
-      followingCount: 0,
+      followers,
+      following,
     }
   }
 
-  return user
+  return null
 }
 
 // Compare the password of an already fetched user (using `findUser`) and compare the

@@ -30,8 +30,8 @@ export type UserInfo = {
   photoUrl?: Maybe<Scalars['String']>
   displayName: Scalars['String']
   postsCount: Scalars['Int']
-  followersCount: Scalars['Int']
-  followingCount: Scalars['Int']
+  followers: Array<Maybe<User>>
+  following: Array<Maybe<User>>
 }
 
 export type SignUpInput = {
@@ -112,14 +112,15 @@ export type UserQuery = { __typename?: 'Query' } & {
   user?: Maybe<
     { __typename?: 'UserInfo' } & Pick<
       UserInfo,
-      | 'id'
-      | 'email'
-      | 'photoUrl'
-      | 'displayName'
-      | 'postsCount'
-      | 'followersCount'
-      | 'followingCount'
-    >
+      'id' | 'email' | 'photoUrl' | 'displayName' | 'postsCount'
+    > & {
+        followers: Array<
+          Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'displayName'>>
+        >
+        following: Array<
+          Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'displayName'>>
+        >
+      }
   >
 }
 
@@ -257,8 +258,14 @@ export const UserDocument = gql`
       photoUrl
       displayName
       postsCount
-      followersCount
-      followingCount
+      followers {
+        id
+        displayName
+      }
+      following {
+        id
+        displayName
+      }
     }
   }
 `

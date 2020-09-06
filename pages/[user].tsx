@@ -6,12 +6,24 @@ import { FaRegUserCircle } from 'react-icons/fa'
 import { useUserQuery } from '../apollo/generated/graphql'
 import { Loader } from '../components/Loader'
 
-export const UserPage = () => {
+function useUserPageState() {
   const router = useRouter()
   const { user } = router.query
   const { data, loading } = useUserQuery({
     variables: { displayName: (user as string) ?? '' },
   })
+
+  // eslint-disable-next-line no-console
+  // console.log('user page props', { router, user, data })
+
+  return {
+    loading,
+    userInfo: data?.user,
+  }
+}
+
+export const UserPage = () => {
+  const { loading, userInfo } = useUserPageState()
 
   if (loading) {
     return (
@@ -21,30 +33,50 @@ export const UserPage = () => {
     )
   }
 
-  if (!data.user) {
+  if (!userInfo) {
     return '404' // TODO
   }
 
-  const { photoUrl, postsCount, followersCount, followingCount } = data.user
+  const { photoUrl, postsCount, followers, following, displayName } = userInfo
+
+  function photo() {
+    return photoUrl ? (
+      <img className="rounded-full" src={photoUrl}></img>
+    ) : (
+      <div style={{ fontSize: '10rem' }}>
+        <FaRegUserCircle />
+      </div>
+    )
+  }
+
+  function info() {
+    return (
+      <>
+        <div className="flex">
+          <div className="text-xl">{displayName}</div>
+          <div className="pl-2">
+            <button className="bg-blue-500 font-semibold p-1 px-2 rounded text-white w-full">
+              follow
+            </button>
+          </div>
+        </div>
+        <div className="flex">
+          <div>posts: {postsCount}</div>
+          <div>followersCount: {followers.length}</div>
+          <div>followingCount: {following.length}</div>
+        </div>
+      </>
+    )
+  }
 
   return (
     <Layout>
       <Navigation />
       <Content>
-        <div>hej {user}</div>
-
-        <div className="">
-          {photoUrl ? (
-            <img className="rounded-full" src={photoUrl}></img>
-          ) : (
-            <div className="text-2xl">
-              <FaRegUserCircle />
-            </div>
-          )}
+        <div className="flex">
+          <div className="p-6">{photo()}</div>
+          <div className="flex-auto">{info()}</div>
         </div>
-        <div>posts: {postsCount}</div>
-        <div>followersCount: {followersCount}</div>
-        <div>followingCount: {followingCount}</div>
       </Content>
     </Layout>
   )

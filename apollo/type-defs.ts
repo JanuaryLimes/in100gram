@@ -17,8 +17,8 @@ export const typeDefs = gql`
     displayName: String!
 
     postsCount: Int!
-    followersCount: Int!
-    followingCount: Int!
+    followers: [User]!
+    following: [User]!
   }
 
   input SignUpInput {

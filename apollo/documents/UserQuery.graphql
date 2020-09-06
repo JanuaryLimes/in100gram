@@ -6,7 +6,13 @@ query User($displayName: String!) {
     displayName
 
     postsCount
-    followersCount
-    followingCount
+    followers {
+      id
+      displayName
+    }
+    following {
+      id
+      displayName
+    }
   }
 }

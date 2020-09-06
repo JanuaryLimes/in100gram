@@ -24,8 +24,7 @@ enum Locations {
 
 export const Navigation = () => {
   const { state } = useContext(AppContext)
-  const router = useRouter()
-  const route = router.route
+  const { route } = useRouter()
 
   const buttons = {
     home: {
@@ -56,9 +55,10 @@ export const Navigation = () => {
 
   function user() {
     const photoUrl = state?.loggedUserState?.loggedUser?.viewer?.photoUrl
+    const name = state?.loggedUserState?.loggedUser?.viewer?.displayName
 
     return (
-      <div className="flex items-center ml-2">
+      <div className="flex items-center ml-2" title={name}>
         {photoUrl ? (
           <img className="rounded-full" src={photoUrl}></img>
         ) : (
