@@ -1,12 +1,13 @@
 import { AuthenticationError, UserInputError } from 'apollo-server-micro'
 import {
   createUser,
-  validatePassword,
   findUser,
   findUserByName,
+  validatePassword,
 } from '../lib/user'
-import { setLoginSession, getLoginSession } from '../lib/auth'
+import { getLoginSession, setLoginSession } from '../lib/auth'
 import { removeTokenCookie } from '../lib/auth-cookies'
+import { followUser, unfollowUser } from '../lib/followers'
 
 export const resolvers = {
   Query: {
@@ -25,8 +26,7 @@ export const resolvers = {
     },
     async user(_parent, { displayName }, _context, _info) {
       try {
-        const user = findUserByName({ displayName })
-        return user
+        return findUserByName({ displayName })
       } catch (e) {
         return null
       }
@@ -56,6 +56,19 @@ export const resolvers = {
     async signOut(_parent, _args, context, _info) {
       removeTokenCookie(context.res)
       return true
+    },
+    /*
+    follow(userId: ID!, follow: ID!): UserInfo
+    unfollow(userId: ID!, follow: ID!): UserInfo
+    */
+    async follow(_parent, { userId, follow }, _context, _info) {
+      const { displayName } = (await followUser({ userId, follow })) ?? {}
+      return findUserByName({ displayName })
+    },
+
+    async unfollow(_parent, { userId, follow }, _context, _info) {
+      const { displayName } = (await unfollowUser({ userId, follow })) ?? {}
+      return findUserByName({ displayName })
     },
   },
 }

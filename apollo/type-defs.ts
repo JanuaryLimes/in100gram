@@ -46,5 +46,7 @@ export const typeDefs = gql`
     signUp(input: SignUpInput!): SignUpPayload!
     signIn(input: SignInInput!): SignInPayload!
     signOut: Boolean!
+    follow(userId: ID!, follow: ID!): UserInfo
+    unfollow(userId: ID!, follow: ID!): UserInfo
   }
 `

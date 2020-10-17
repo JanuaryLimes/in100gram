@@ -1,0 +1,37 @@
+mutation Follow($userId: ID!, $follow: ID!) {
+  follow(userId: $userId, follow: $follow) {
+    id
+    email
+    photoUrl
+    displayName
+
+    postsCount
+    followers {
+      id
+      displayName
+    }
+    following {
+      id
+      displayName
+    }
+  }
+}
+
+mutation Unfollow($userId: ID!, $follow: ID!) {
+  unfollow(userId: $userId, follow: $follow) {
+    id
+    email
+    photoUrl
+    displayName
+
+    postsCount
+    followers {
+      id
+      displayName
+    }
+    following {
+      id
+      displayName
+    }
+  }
+}
