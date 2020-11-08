@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "preinstall": "cd ./backend && npm run install",
+    "preinstall": "cd ./backend && yarn",
     "start": "cd ./backend && npm run start",
     "build": "cd ./backend && npm run build"
   },
@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/JanuaryLimes/in100gram/issues"
   },
-  "homepage": "https://github.com/JanuaryLimes/in100gram#readme"
+  "homepage": "https://github.com/JanuaryLimes/in100gram#readme",
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  }
 }
