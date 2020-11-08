@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "cd ./backend && npm run install",
     "start": "cd ./backend && npm run start",
     "build": "cd ./backend && npm run build"
   },
