@@ -21,6 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b6b70151-34db-4837-82a8-4a5728830dff" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/styles/tailwind.pcss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/styles/tailwind.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,11 +34,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1k9wJMf9X2fM1dtsMEWwVZGrsoL" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -49,8 +56,9 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/node_modules/typescript/lib" />
   </component>
-  <component name="RunManager" selected="npm.backend-dev">
+  <component name="RunManager" selected="npm.frontend-dev">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -97,7 +105,7 @@
       <updated>1605126041490</updated>
       <workItem from="1605126042521" duration="169000" />
       <workItem from="1605126220062" duration="53000" />
-      <workItem from="1605126282096" duration="1096000" />
+      <workItem from="1605126282096" duration="3894000" />
     </task>
     <task id="LOCAL-00001" summary="config">
       <created>1605126100477</created>
@@ -127,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605126726322</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=".idea config">
+      <created>1605127483739</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605127483739</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,35 +161,41 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="config" />
     <MESSAGE value="package.json config" />
-    <option name="LAST_COMMIT_MESSAGE" value="package.json config" />
+    <MESSAGE value=".idea config" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea config" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605127377385">
+    <state x="424" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605128122747">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state x="424" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1018@0.0.1920.1018" timestamp="1605127377385" />
+    <state x="424" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1018@0.0.1920.1018" timestamp="1605128122747" />
     <state x="192" y="82" key="DiffContextDialog" timestamp="1605126158596">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
     <state x="192" y="82" key="DiffContextDialog/0.0.1920.1018@0.0.1920.1018" timestamp="1605126158596" />
-    <state width="1874" height="276" key="GridCell.Tab.0.bottom" timestamp="1605127135354">
+    <state width="1874" height="276" key="GridCell.Tab.0.bottom" timestamp="1605130171364">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
-    <state width="1874" height="276" key="GridCell.Tab.0.center" timestamp="1605127135354">
+    <state width="1874" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1018@0.0.1920.1018" timestamp="1605130171364" />
+    <state width="1874" height="276" key="GridCell.Tab.0.center" timestamp="1605130171364">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.center/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
-    <state width="1874" height="276" key="GridCell.Tab.0.left" timestamp="1605127135354">
+    <state width="1874" height="276" key="GridCell.Tab.0.center/0.0.1920.1018@0.0.1920.1018" timestamp="1605130171364" />
+    <state width="1874" height="276" key="GridCell.Tab.0.left" timestamp="1605130171364">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.left/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
-    <state width="1874" height="276" key="GridCell.Tab.0.right" timestamp="1605127135354">
+    <state width="1874" height="276" key="GridCell.Tab.0.left/0.0.1920.1018@0.0.1920.1018" timestamp="1605130171364" />
+    <state width="1874" height="276" key="GridCell.Tab.0.right" timestamp="1605130171364">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.right/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
+    <state width="1874" height="276" key="GridCell.Tab.0.right/0.0.1920.1018@0.0.1920.1018" timestamp="1605130171364" />
+    <state x="750" y="187" key="RollbackChangesDialog" timestamp="1605129903512">
+      <screen x="0" y="0" width="1920" height="1018" />
+    </state>
+    <state x="750" y="187" key="RollbackChangesDialog/0.0.1920.1018@0.0.1920.1018" timestamp="1605129903512" />
     <state x="461" y="139" key="SettingsEditor" timestamp="1605126542414">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
@@ -183,5 +204,9 @@
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
     <state x="560" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1018@0.0.1920.1018" timestamp="1605126162700" />
+    <state x="760" y="366" key="scopes" timestamp="1605130094653">
+      <screen x="0" y="0" width="1920" height="1018" />
+    </state>
+    <state x="760" y="366" key="scopes/0.0.1920.1018@0.0.1920.1018" timestamp="1605130094653" />
   </component>
 </project>
