@@ -6,7 +6,9 @@
   "scripts": {
     "preinstall": "cd ./backend && npm i",
     "start": "cd ./backend && npm run start",
-    "build": "cd ./backend && npm run build"
+    "build": "cd ./backend && npm run build",
+    "backend-dev": "cd ./backend && npm run develop",
+    "frontend-dev": "cd ./frontend && npm run dev"
   },
   "repository": {
     "type": "git",
