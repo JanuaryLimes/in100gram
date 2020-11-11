@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b6b70151-34db-4837-82a8-4a5728830dff" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +82,10 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="npm.backend-dev" />
+      <item itemvalue="npm.frontend-dev" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -95,7 +97,7 @@
       <updated>1605126041490</updated>
       <workItem from="1605126042521" duration="169000" />
       <workItem from="1605126220062" duration="53000" />
-      <workItem from="1605126282096" duration="261000" />
+      <workItem from="1605126282096" duration="1096000" />
     </task>
     <task id="LOCAL-00001" summary="config">
       <created>1605126100477</created>
@@ -118,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605126256996</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="package.json config">
+      <created>1605126726322</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605126726322</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,29 +147,34 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="config" />
-    <option name="LAST_COMMIT_MESSAGE" value="config" />
+    <MESSAGE value="package.json config" />
+    <option name="LAST_COMMIT_MESSAGE" value="package.json config" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="424" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605127377385">
+      <screen x="0" y="0" width="1920" height="1018" />
+    </state>
+    <state x="424" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1018@0.0.1920.1018" timestamp="1605127377385" />
     <state x="192" y="82" key="DiffContextDialog" timestamp="1605126158596">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
     <state x="192" y="82" key="DiffContextDialog/0.0.1920.1018@0.0.1920.1018" timestamp="1605126158596" />
-    <state width="1874" height="276" key="GridCell.Tab.0.bottom" timestamp="1605126542528">
+    <state width="1874" height="276" key="GridCell.Tab.0.bottom" timestamp="1605127135354">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1018@0.0.1920.1018" timestamp="1605126542528" />
-    <state width="1874" height="276" key="GridCell.Tab.0.center" timestamp="1605126542528">
+    <state width="1874" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
+    <state width="1874" height="276" key="GridCell.Tab.0.center" timestamp="1605127135354">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.center/0.0.1920.1018@0.0.1920.1018" timestamp="1605126542528" />
-    <state width="1874" height="276" key="GridCell.Tab.0.left" timestamp="1605126542528">
+    <state width="1874" height="276" key="GridCell.Tab.0.center/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
+    <state width="1874" height="276" key="GridCell.Tab.0.left" timestamp="1605127135354">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.left/0.0.1920.1018@0.0.1920.1018" timestamp="1605126542528" />
-    <state width="1874" height="276" key="GridCell.Tab.0.right" timestamp="1605126542528">
+    <state width="1874" height="276" key="GridCell.Tab.0.left/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
+    <state width="1874" height="276" key="GridCell.Tab.0.right" timestamp="1605127135354">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
-    <state width="1874" height="276" key="GridCell.Tab.0.right/0.0.1920.1018@0.0.1920.1018" timestamp="1605126542528" />
+    <state width="1874" height="276" key="GridCell.Tab.0.right/0.0.1920.1018@0.0.1920.1018" timestamp="1605127135354" />
     <state x="461" y="139" key="SettingsEditor" timestamp="1605126542414">
       <screen x="0" y="0" width="1920" height="1018" />
     </state>
