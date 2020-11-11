@@ -42,7 +42,7 @@
     "faker": "^5.0.0",
     "graphql": "^15.3.0",
     "knex": "^0.21.4",
-    "next": "9.3.6",
+    "next": "9.4.4",
     "pg": "^8.3.0",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
