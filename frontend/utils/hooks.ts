@@ -1,18 +1,37 @@
-import { useRouter } from 'next/router'
-import { useViewerQuery } from '../apollo/generated/graphql'
-import { useEffect } from 'react'
+import {useRouter} from 'next/router'
+import React, {useEffect} from 'react'
+import {useQuery} from "react-query";
 
 export function useViewer() {
-  const router = useRouter()
-  const { data, loading, error } = useViewerQuery()
-  const viewer = data?.viewer
-  const shouldRedirect = !(loading || error || viewer)
+    const router = useRouter()
 
-  useEffect(() => {
-    if (shouldRedirect) {
-      router.push('/accounts/login')
+    const fetchMe = React.useCallback(async () => {
+        const token = localStorage.getItem('jwt');
+        const response = await fetch('http://localhost:1337/users/me', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+        return await response.json();
+    }, [])
+
+    const {data, isLoading} = useQuery('users/me', fetchMe)
+
+    let shouldRedirect = false;
+
+    if (!isLoading && data?.error) {
+        shouldRedirect = true;
     }
-  }, [shouldRedirect])
 
-  return { viewer }
+    //const shouldRedirect = !(isLoading || (isError || data.error) || data)
+
+    useEffect(() => {
+        if (shouldRedirect) {
+            router.push('/accounts/login')
+        }
+    }, [shouldRedirect])
+
+    console.warn('dat', data)
+
+    return {viewer: data?.error ? null : data}
 }
