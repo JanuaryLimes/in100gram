@@ -1,51 +1,22 @@
-import {useState} from 'react'
-import {useRouter} from 'next/router'
 import Link from 'next/link'
-import {getErrorMessage} from '../../lib/form'
 import {Logo} from '../../components/Logo'
 import {Layout} from '../../components/Layout'
-import {useMutation} from "react-query";
+import {useDispatch} from "react-redux";
+import {signIn} from "../../src/features/auth/authSlice";
 
 function SignIn() {
-    const [status, setStatus] = useState('')
-    const router = useRouter()
-
-    const [signIn, {isLoading}] = useMutation(async (body: string) => {
-        const response = await fetch('http://localhost:1337/auth/local', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body
-        })
-        return response.json();
-    }, {
-        onSuccess: async (data) => {
-            if (data.error) {
-                setStatus(data.data[0].messages[0].message)
-            } else {
-                // TODO cookie?
-                localStorage.setItem("jwt", data.jwt)
-                await router.push('/')
-            }
-        }
-    })
-
+    const dispatch = useDispatch()
 
     async function handleSubmit(event) {
         event.preventDefault()
 
         const emailElement = event.currentTarget.elements.email
         const passwordElement = event.currentTarget.elements.password
-
-        try {
-            await signIn(JSON.stringify({
-                identifier: emailElement.value,
-                password: passwordElement.value,
-            }))
-        } catch (error) {
-            setStatus(getErrorMessage(error))
-        }
+        const payload = {
+            identifier: emailElement.value,
+            password: passwordElement.value
+        };
+        dispatch(signIn(payload))
     }
 
     const inputClasses = 'border p-2 rounded-sm text-sm w-full mb-2'
@@ -76,13 +47,13 @@ function SignIn() {
                             />
                         </div>
                         <button
-                            type="submit" disabled={isLoading}
+                            type="submit" /*disabled={isLoading}*/
                             className="bg-blue-500 font-semibold p-1 rounded text-white w-full"
                         >
                             Log in
                         </button>
 
-                        {status && <p className="py-4">{status}</p>}
+                        {/*status && <p className="py-4">{status}</p>*/}
 
                         {/* TODO reset password? */}
                     </form>
