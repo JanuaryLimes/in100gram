@@ -1,31 +1,11 @@
 import {AxiosInstance} from "axios";
-import {SignInPayload} from "./types";
-
-type UserApiDto = {
-    email: string,
-    username: string
-}
-
-type SignInResultApiDto = {
-    jwt: string,
-    user: UserApiDto
-}
-
-type User = {
-    email: string,
-    username: string
-}
-
-type SignInResult = {
-    jwt: string,
-    user: User
-}
+import {SignInCredentials, SignInResult, SignInResultApiDto} from "./types";
 
 export class AuthApi {
     constructor(private axiosInstance: AxiosInstance) {
     }
 
-    async signIn(payload: SignInPayload): Promise<SignInResult> {
+    async signIn(payload: SignInCredentials): Promise<SignInResult> {
         try {
             const response = await this.axiosInstance.post('/auth/local', payload);
             const data: SignInResultApiDto = response.data;
@@ -37,7 +17,7 @@ export class AuthApi {
                 }
             }
         } catch (e) {
-            console.error(e);
+            throw new Error(e.response.data.data[0].messages[0].message)
         }
     }
 }

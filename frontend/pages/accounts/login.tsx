@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import {Logo} from '../../components/Logo'
 import {Layout} from '../../components/Layout'
-import {useDispatch} from "react-redux";
-import {signIn} from "../../src/features/auth/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {selectInfoMessage, selectIsLoginPending, signIn} from "../../src/features/auth/authSlice";
 
 function SignIn() {
     const dispatch = useDispatch()
+    const isLoginPending = useSelector(selectIsLoginPending)
+    const infoMessage = useSelector(selectInfoMessage)
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -16,6 +18,7 @@ function SignIn() {
             identifier: emailElement.value,
             password: passwordElement.value
         };
+
         dispatch(signIn(payload))
     }
 
@@ -47,13 +50,13 @@ function SignIn() {
                             />
                         </div>
                         <button
-                            type="submit" /*disabled={isLoading}*/
+                            type="submit" disabled={isLoginPending}
                             className="bg-blue-500 font-semibold p-1 rounded text-white w-full"
                         >
                             Log in
                         </button>
 
-                        {/*status && <p className="py-4">{status}</p>*/}
+                        {infoMessage && <p className="py-4">{infoMessage}</p>}
 
                         {/* TODO reset password? */}
                     </form>
