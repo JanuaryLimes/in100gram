@@ -5,16 +5,16 @@ import { Loader } from '../components/Loader'
 import { Navigation } from '../components/Navigation'
 import { NextPageContext } from 'next'
 import { useViewer } from '../utils/hooks'
+import React from "react";
 
 export const Home = ({ postsData }): JSX.Element => {
   const { viewer } = useViewer()
 
-  // TODO error?
   function content() {
     if (viewer) {
       return (
         <>
-          <Navigation></Navigation>
+          <Navigation/>
           <Main postsData={postsData} />
         </>
       )

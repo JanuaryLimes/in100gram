@@ -24,7 +24,7 @@ function SignUp() {
                 setStatus(data.data[0].messages[0].message)
             } else {
                 // TODO cookie?
-                localStorage.setItem("jwt", data.jwt)
+                //localStorage.setItem("jwt", data.jwt)
                 setStatus('Account successfully created')
             }
         }

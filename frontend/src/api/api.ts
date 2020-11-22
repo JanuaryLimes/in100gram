@@ -22,7 +22,14 @@ class Api {
             }
         })
         instance.interceptors.request.use((config) => {
-            // TODO token header?
+            const token = localStorage.getItem('jwt')
+            if (token && !config.params?.public) {
+                config.headers = {
+                    ...config.headers,
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            // TODO token header? redirect to login page?
             return config;
         })
 

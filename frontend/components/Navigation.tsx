@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Logo } from './Logo'
 import {
@@ -13,7 +13,6 @@ import {
 } from 'react-icons/ri'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { useRouter } from 'next/router'
-import { AppContext } from '../store/context'
 
 enum Locations {
   home = '/',
@@ -23,7 +22,6 @@ enum Locations {
 }
 
 export const Navigation = () => {
-  const { state } = useContext(AppContext)
   const { route } = useRouter()
 
   const buttons = {
@@ -54,8 +52,9 @@ export const Navigation = () => {
   }
 
   function user() {
-    const photoUrl = state?.loggedUserState?.loggedUser?.viewer?.photoUrl
-    const name = state?.loggedUserState?.loggedUser?.viewer?.displayName
+    //TODO;
+    const photoUrl = ''//state?.loggedUserState?.loggedUser?.viewer?.photoUrl
+    const name =''// state?.loggedUserState?.loggedUser?.viewer?.displayName
 
     return (
       <div className="flex items-center ml-2" title={name}>
