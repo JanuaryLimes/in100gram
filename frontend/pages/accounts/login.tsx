@@ -29,7 +29,11 @@ function SignIn() {
             <div className="flex flex-col items-center p-4">
                 <div className="w-full max-w-sm border bg-white rounded-sm p-10">
                     <div className="text-3xl flex justify-center pb-2">
-                        <Logo/>
+                        <Link href="/">
+                            <button>
+                                <Logo/>
+                            </button>
+                        </Link>
                     </div>
 
                     <form onSubmit={handleSubmit} className="pt-10">
